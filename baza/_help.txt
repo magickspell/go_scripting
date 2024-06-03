@@ -220,6 +220,53 @@ CONTEXT - объект который можно передавать между
 
 
 
+JSON
+MARSHAL - парсит в строчку
+MARSHAL INDENT - парсит и вставляет префиксы и инденты
+UNMARSHAL - используется для преобразования JSON-данных в структуру
+--Интерфейсы маршалеров JSON нужны для переопределения, пропуска пустых или игнорирования полей, доступа к приватным полям.
+--ТЕГИ JSON:
+type myStruct struct {
+    // Будет использовать название и тип поля
+    Field1 int
+    // Изменено название
+    Field2 int `json:"renamedField2"`
+    // Вырезается zero-value и изменено название
+    Field3 int `json:"renamedField3,omitempty"`
+    // Вырезается zero-value
+    Field4 int `json:",omitempty"`
+    // Поле игнорируется
+    Field5 int `json:"-"`
+    // Поле будет называться `-`
+    Field6 int `json:"-,"`
+    // Примет строковое представление (слишком большое число для JS)
+    Int64String int64 `json:",string"`
+}
+--либы для жсона (но нужны редко)
+json-iterator/go
+easy/json
+std
+
+
+
+/***///*/*/*/*/*/*/*/*/*
+HTTP клиент
+-Имеется встроенный пакет net для работы с сетью и подпакет net/http дляработы с HTTP
+http.Client:
+'''
+import "net/http"
+http.Client{
+    Transport
+    // Как каждый запрос будет сделан, RoundTripper интерф
+    CheckRedirect // Функция, определяющая политику работы редиректа
+    Jar:
+    // Общее хранилище cookie
+    Timeout:
+    // Лимит времени выполнения запросов
+}
+'''
+
+
 
 
 
