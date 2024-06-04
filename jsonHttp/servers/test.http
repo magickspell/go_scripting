@@ -1,0 +1,7 @@
+### запрос
+GET http://localhost:8080/
+Accept: application/json
+
+### запрос
+GET http://localhost:8080/handler-args
+Accept: application/json
