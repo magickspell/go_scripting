@@ -42,9 +42,9 @@ func (h *httpHandler) ServerHTTP(w http.ResponseWriter, req *http.Request) {
 }
 
 func (h *httpHandler) getProduct(w http.ResponseWriter, req *http.Request) {
-	// получаем SKU товара из запроса
+	// получаем SKU товара из запроса (парсим)
 	vars := mux.Vars(req)
-	sku, _ := strconv.ParseInt(vars["sku"], 10, 64)
+	sku, _ := strconv.ParseInt(vars["sku"], 10, 64) // парсим
 	if sku == 0 {
 		println("### ZERO FOUND ###")
 		w.WriteHeader(http.StatusBadRequest)
