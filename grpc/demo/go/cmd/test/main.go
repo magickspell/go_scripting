@@ -26,6 +26,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+	fmt.Println("print marshal protobuf")
+	fmt.Println(
+		proto.Marshal(&my.SellerParams{
+			Result: []*my.SellerParams_Item{
+				{SellerId: 4},
+			},
+		}),
+	)
+	fmt.Println()
+
 	fmt.Printf("result:\n%+v\n\n\n", params)
 	fmt.Printf("first item:\n%+v\n\n\n", params.GetResult()[0])
 	fmt.Println()

@@ -312,6 +312,7 @@ GRACEFULL SHUTDOWN - КОРРЕКТНОЕ ЗАВЕРШЕНИЕ СЕРВИСА
 
 
 PROTOCOL BUFFERS (protobuf) - мормат типа JSON, но занимает меньше места, дружит со многими языками
+- (пишем файл name.proto и потом генерим его в нужный язык)
 - меньше весит (эффективный бинарный формат)
 - для (де)кодирования нужно знать схему
 - парсеры/сериализаторы генерируются для многих языков
@@ -322,28 +323,54 @@ PROTOCOL BUFFERS (protobuf) - мормат типа JSON, но занимает 
 - поля могут быть ЕНУМЫ
 - поля могут быть МАПЫ
 - для генерации надо (sudo apt install -y protobuf-compiler)
-или (
-docker run --rm -v $(pwd):/workspace bufbuild/buf generate --template /workspace/buf.gen.yaml
-docker run --rm -v $(pwd):/workspace bufbuild/buf:1.32 generate --template /workspace/buf.gen.yaml
+''''''
+    или (
+    docker run --rm -v $(pwd):/workspace bufbuild/buf generate --template /workspace/buf.gen.yaml
+    docker run --rm -v $(pwd):/workspace bufbuild/buf:1.32 generate --template /workspace/buf.gen.yaml
+    )
+    установка для ГО (
+    sudo apt install protobuf-compiler
+    sudo apt install golang-goprotobuf-dev
+
+    можно пробовать запускать: protoc -I=protos --go_out=go/pb protos/my/my.proto --go_opt=source_relative
+       объяснение команды:                      --указвае ЯП и в какую папку выводить ____ папка до прото-файла  --доп опция для компиляции для go
+
+    если не получается пробуем
+    $ export GOPATH=$HOME/go
+    $ export PATH=$PATH:$GOPATH/bin
+
+    export GO_PATH=~/go
+    export PATH=$PATH:/$GO_PATH/bin
 )
-установка для ГО (
-sudo apt install protobuf-compiler
-sudo apt install golang-goprotobuf-dev
+''''''
+- в протобафах отличить ноль от отсутсвующего значения долгое вроемя было нельзя
+но теперь появились врапперы, через которые можно узнать пустой или нет message
+поэтому во ваперы заворачивают простые скалярные параметры, ниже пример такого врапера
+"""
+import "google/protobuf/wrappers.proto";
 
-можно пробовать запускать: protoc -I=protos --go_out=go/pb protos/my/my.proto --go_opt=source_relative
-   объяснение команды:                      --указвае ЯП и в какую папку выводить ____ папка до прото-файла  --доп опция для компиляции для go
+message ParamValue {
+    oneof value_oneof {
+        google,protobuf.StringValue str = 1;
+        google,protobuf.Int64Value int = 2;
+        google,protobuf.BoolValue bool = 3;
+    }
+}
+"""
+- еще есть библиотека timestamp от гугла, там есть тип EMPTY - пустое поле (вроде единственное полезное оттуда)
+- ОБРАТНАЯ СОВМЕСТИМОСТЬ
+1 нельзя менять номер существующего поля
+2 можно убирать и добавлять поля
+3 нельзя добавлять новое поле на место старого номера (reserved)
+4 можно добавлять и удалять repeated (масивы) для string и bytes сообщений
 
-если не получается пробуем
-$ export GOPATH=$HOME/go
-$ export PATH=$PATH:$GOPATH/bin
 
-export GO_PATH=~/go
-export PATH=$PATH:/$GO_PATH/bin
-)
+
 
 
 GRPC
-
+- RPC (remote procedure call) - на базе protocolbuffers - удаленный вызов процедур
+- работает поверх HTTP/2 (в озоне передаются без шифрования т.к. оно уже зашифровано само по себе)
 
 
 
