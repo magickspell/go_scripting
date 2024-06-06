@@ -17,3 +17,8 @@ docker-gen:
 .PHONY: run-py
 run-py:
 	python3 python/writeProto.py
+
+.PHONY: run-go
+run-go:
+	cd ./go
+	go run cmd/test/main.go
