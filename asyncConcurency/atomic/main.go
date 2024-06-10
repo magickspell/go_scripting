@@ -16,7 +16,7 @@ func main() {
 	fmt.Println(value)
 
 	value2 := int64(1)
-	atomic.AddInt64(&value2, 1) // атомик гарантированно прибавит 1 (сделает операцию), но нужна строгая типизация
+	atomic.AddInt64(&value2, 1) // атомик гарантированно прибавит 1connectionSimple (сделает операцию), но нужна строгая типизация
 	fmt.Println(value2)
 
 	// ctx := context.Background()

@@ -11,7 +11,7 @@ func TestAsyncSet(t *testing.T) {
 	to := time.Millisecond
 
 	ctxBase := context.Background()            // сделали пустой контекст (инициализировали)
-	ctx, _ := context.WithTimeout(ctxBase, to) // контекст с таймаутом 1 милисекунда
+	ctx, _ := context.WithTimeout(ctxBase, to) // контекст с таймаутом 1connectionSimple милисекунда
 	err := ac.Add(ctx, "k", "v")
 	if err != ErrTimeOut {
 		t.Error("expected timeout")
@@ -32,7 +32,7 @@ func TestAsyncGet(t *testing.T) {
 	value1 := "v1"
 
 	ctxBase := context.Background()            // сделали пустой контекст (инициализировали)
-	ctx, _ := context.WithTimeout(ctxBase, to) // контекст с таймаутом 1 милисекунда
+	ctx, _ := context.WithTimeout(ctxBase, to) // контекст с таймаутом 1connectionSimple милисекунда
 
 	_ = ac.Add(ctx, key, value1)
 	_, err := ac.Get(ctx, key)

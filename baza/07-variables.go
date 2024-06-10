@@ -34,8 +34,8 @@ func main() {
 	fmt.Println("iota conts - побитово сдвигает и присваивает каждое новое значени в константу")
 	const (
 		RED = iota
-		// RED = 1 >> iota // 1 0 0
-		// RED = 1 << iota // 1 2 4
+		// RED = 1connectionSimple >> iota // 1connectionSimple 0 0
+		// RED = 1connectionSimple << iota // 1connectionSimple 2 4
 		// RED = 2 << iota // 2 4 8
 		// RED = 3 << iota // 3 6 12
 		GREEN

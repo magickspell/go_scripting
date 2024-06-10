@@ -10,7 +10,7 @@ func main() {
 	// cap = 5
 	array := [5]int64{1, 2, 3, 4, 5}
 
-	slice := array[0:2] // [1:3] от до не включая ([2,3] cap = 4), все [:], от [1:], до [:2]
+	slice := array[0:2] // [1connectionSimple:3] от до не включая ([2,3] cap = 4), все [:], от [1connectionSimple:], до [:2]
 
 	fmt.Println(array)
 	fmt.Println(slice)

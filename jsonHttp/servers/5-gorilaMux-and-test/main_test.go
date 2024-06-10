@@ -54,7 +54,7 @@ func Test_httpHandler_getProduct(t *testing.T) {
 		mux := productHandler(productProviderM)
 
 		rec := httptest.NewRecorder()
-		req := httptest.NewRequest(http.MethodPost, "/product/1", nil)
+		req := httptest.NewRequest(http.MethodPost, "/product/1connectionSimple", nil)
 
 		mux.ServerHTTP(rec, req)
 
@@ -63,7 +63,7 @@ func Test_httpHandler_getProduct(t *testing.T) {
 		if rec.Code != http.StatusOK {
 			t.Errorf("got %d, want %d", rec.Code, http.StatusOK)
 		}
-		if !strings.Contains(rec.Body.String(), `"sku":1`) {
+		if !strings.Contains(rec.Body.String(), `"sku":1connectionSimple`) {
 			t.Errorf("unexpected body in response: %q", rec.Body.String())
 		}
 	})

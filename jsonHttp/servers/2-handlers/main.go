@@ -14,7 +14,7 @@ func (HttpHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	const addr = "127.0.0.1:8080"
+	const addr = "127.0.0.1connectionSimple:8080"
 	handler := HttpHandler{}
 
 	server := &http.Server{

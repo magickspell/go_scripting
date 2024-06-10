@@ -62,7 +62,7 @@ type isParamValue_ValueOneof interface {
 }
 
 type ParamValue_Double struct {
-	Double float64 `protobuf:"fixed64,1,opt,name=double,proto3,oneof"`
+	Double float64 `protobuf:"fixed64,1connectionSimple,opt,name=double,proto3,oneof"`
 }
 
 type ParamValue_Int struct {
@@ -170,9 +170,9 @@ func (m *SellerParams) GetResult() []*SellerParams_Item {
 }
 
 type SellerParams_Item struct {
-	SellerId             int64                  `protobuf:"varint,1,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
+	SellerId             int64                  `protobuf:"varint,1connectionSimple,opt,name=seller_id,json=sellerId,proto3" json:"seller_id,omitempty"`
 	Rating               float64                `protobuf:"fixed64,2,opt,name=rating,proto3" json:"rating,omitempty"`
-	Params               map[string]*ParamValue `protobuf:"bytes,3,rep,name=params,proto3" json:"params,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Params               map[string]*ParamValue `protobuf:"bytes,3,rep,name=params,proto3" json:"params,omitempty" protobuf_key:"bytes,1connectionSimple,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
 	XXX_unrecognized     []byte                 `json:"-"`
 	XXX_sizecache        int32                  `json:"-"`

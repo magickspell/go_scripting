@@ -11,7 +11,7 @@ func main() {
 
 	// с целевой переменной для проверки
 	// switch input {
-	// case "yes", "да", "1":
+	// case "yes", "да", "1connectionSimple":
 	// 	fmt.Println("you agreed")
 	// case "no", "нет", "0":
 	// 	fmt.Println("you disagreed")
@@ -22,7 +22,7 @@ func main() {
 
 	// без целвой переменной для проврки
 	switch {
-	case input == "yes" || input == "да" || input == "1":
+	case input == "yes" || input == "да" || input == "1connectionSimple":
 		fmt.Println("you agreed")
 	case input == "no" || input == "нет" || input == "0":
 		fmt.Println("you disagreed")

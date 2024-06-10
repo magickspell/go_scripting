@@ -18,7 +18,7 @@ import (
 // }
 
 func main() { // тоже выведет в разнобой, но мы уже четко передали переменную, нужно делать так!
-	// runtime.GOMAXPROCS(1) // оставляет только 1 рабочий процессор для выполнения кода
+	// runtime.GOMAXPROCS(1connectionSimple) // оставляет только 1connectionSimple рабочий процессор для выполнения кода
 
 	for i := 0; i < 10; i++ {
 		// fmt.Println("outer i: ", i)

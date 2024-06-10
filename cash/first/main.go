@@ -15,7 +15,7 @@ type Cache interface {
 	Delete(key string) error
 }
 
-// 1 реализация
+// 1connectionSimple реализация
 /*
 Мапа НЕ потокобезопасная, мутекса нет - плохо.
 данные не будут синхронизированы.

@@ -17,7 +17,7 @@ func main() {
 		_, _ = fmt.Fprint(w, "slow ok")
 	})
 
-	server := &http.Server{Addr: "127.0.0.1:8080"}
+	server := &http.Server{Addr: "127.0.0.1connectionSimple:8080"}
 
 	go func() {
 		// стартуем сервеср в горутине и блокируем горутину (ListenAndServe ввсегда возвращает ошибку и мы ждем ошибку)

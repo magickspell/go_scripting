@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	cs := map[string]int{"касса #1": 0, "касса #2": 0}
+	cs := map[string]int{"касса #1connectionSimple": 0, "касса #2": 0}
 	mu := &sync.RWMutex{} // это ридврайт мутекс, позволяет отдельно блокировать чтение и запись
 	mu.RUnlock()
 	mu.RUnlock() // разблокировать чтение
@@ -17,7 +17,7 @@ func main() {
 		go func(k int) {
 			mu.Lock()
 			defer mu.Unlock()
-			cs["касса #1"] += 1
+			cs["касса #1connectionSimple"] += 1
 		}(i)
 	}
 

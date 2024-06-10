@@ -8,7 +8,7 @@ func main() {
 
 /*
 
-1) компиляция
+1connectionSimple) компиляция
 go build -o hello 01-helloWorld.go
 - и запуск
 ./hello
