@@ -1,0 +1,49 @@
+Тестирование
+https://github.com/DATA-DOG/go-txdb – Single transaction based sql.Driver for GO
+Позволяет писать изолированные тесты.
+func init() {
+txdb.Register("txdb", "mysql", "root@/txdb_test")
+}
+func main() {
+db, err := sql.Open("txdb", "identifier")
+if err != nil {
+log.Fatal(err)
+}
+defer db.Close()
+if _, err := db.Exec(`INSERT INTO users(username) VALUES("gopher")`);
+log.Fatal(err)
+}
+}
+
+
+
+Моки
+https://github.com/DATA-DOG/go-sqlmock
+func TestShouldUpdateStats(t *testing.T) {
+db, mock, err := sqlmock.New()
+if err != nil {
+t.Fatalf("an error '%s' was not expected when opening a stub databas
+}
+defer db.Close()
+mock.ExpectBegin()
+mock.ExpectExec("INSERT INTO product_viewers").WithArgs(2, 3)).WillRet
+mock.ExpectCommit()
+if err = recordStats(db, 2, 3); err != nil {
+t.Errorf("error was not expected while updating stats: %s", err)
+}
+if err := mock.ExpectationsWereMet(); err != nil {
+t.Errorf("there were unfulfilled expectations: %s", err)
+}
+}
+
+
+
+Explain
+explain (analyse, verbose, costs, buffers, format json) -- ...
+https://explain.dalibo.com/
+
+
+
+
+ЗАЧЕМ АПГРЕЦДИТСЯ ПОСТРГЕС
+https://why-upgrade.depesz.com/
