@@ -1,0 +1,10 @@
+после запуска топика создаем topic
+
+name - test_topic
+nujmber of partitions - 5 (сколько партиций)
+replication factor - 3 (сколько копий партиций)
+min in sync replicas - 2
+cleanup policy - delete
+time to rd in ms - 7 dayes
+ma size on disk - not set
+max mwessage - 1000012
