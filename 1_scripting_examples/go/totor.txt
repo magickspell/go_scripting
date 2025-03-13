@@ -1,0 +1,52 @@
+структура папок го:
+bin - собранные бинарники (exe) (скомпилированый код)
+pkg - временные объектные файлы
+
+src - исходники программы
+  |
+  github.com - папка со склонированными пакетами
+
+
+Тесты в го:
+go test -cover - подсчет покрытия тестов
+go tool cover -html=cover.out -o cover.html - вывод покрытия тестов
+go test -coverprfile=cover.out - вывод покрытия тестов
+go test -v ./... - запусти все тесты которые есть с вербоусом
+
+
+нагрузка на хоста (apache benchmark)
+ab -t 20 -n 100000000 -c 5 http://127.0.0.1 
+ 
+в go можно посотреть трассировку горутин
+curl http://localhost:8080/debug/pprof/trace?seconds=8 -o trace.out
+go tool trace -http "127.0.0.1:8081" tracing.exe trace.out
+
+
+
+ЧЕРЕЗ КОНЕКСТ (гошный) НЕЛЬЗЯ ПЕРЕДАВАТЬ ПАРАМЕТРЫ ФУНКЦИИ (конекшены к БД тоже лучше не надо)
+контекст нужен только для хранения общих переменных (таймаутов, конфигов)
+КОНТЕКСТ передается первым аргументом в функцию!
+
+
+pkg errors - популярная библа для ошибок
+errorGroup - аналог waitGroup который отлавливает ошибку в горутинах
+
+
+http get запросы - лучше не отправлять сразу а настроить для них клиента с тамаутами и т.д.
+transport := &http.Transport{
+  DialContext: (&net.Dialer{
+    Timeout:   30 * time.Second,
+    KeepAlive: 30 * time.Second,
+    DualStack: true,
+  }).DialContext,
+  MaxIdleConns:          100,
+  IdleConnTimeout:       90 * time.Second,
+  TLSHandshakeTimeout:   10 * time.Second,
+  ExpectContinueTimeout: 1 * time.Second,
+}
+
+client := &http.Client{
+  Timeout:   time.Second * 10,
+  Transport: transport,
+}
+
